@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+
 import 'package:task_manager/controllers/task_list.dart';
 
 class CardTaskTopFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<TaskList>(context);
+    final provider = TaskList();
     final taskFavorite = provider.tasksFavorite;
 
     return Container(

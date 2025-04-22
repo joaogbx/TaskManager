@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:task_manager/models/task.dart';
 
-class TaskList extends ChangeNotifier {
+class TaskList {
   final List<Task> _tasks = [
     Task(
-      title: 'teste',
+      title: 'teste2',
       description: 'teste',
-      timer: '21:00',
+      timer: '${DateTime.now().hour}:${DateTime.now().minute}',
       locale: 'sala222f',
       color: Colors.red,
     ),
     Task(
-      title: 'teste',
-      description: 'teste',
-      timer: '09:00',
+      title: 'teste3',
+      description: 'teste2',
+      timer: '${DateTime.now().hour}:${DateTime.now().minute}',
+      locale: 'sala333f',
+      color: Colors.green,
+    ),
+    Task(
+      title: 'teste3',
+      description: 'teste2',
+      timer: '${DateTime.now().hour}:${DateTime.now().minute}',
+      locale: 'sala333f',
+      color: Colors.green,
+    ),
+    Task(
+      title: 'teste3',
+      description: 'teste2',
+      timer: '${DateTime.now().hour}:${DateTime.now().minute}',
+      locale: 'sala333f',
+      color: Colors.green,
+    ),
+    Task(
+      title: 'teste3',
+      description: 'teste2',
+      timer: '${DateTime.now().hour}:${DateTime.now().minute}',
       locale: 'sala333f',
       color: Colors.green,
     ),
@@ -26,6 +47,5 @@ class TaskList extends ChangeNotifier {
 
   addTask(Task task) {
     _tasks.add(task);
-    notifyListeners();
   }
 }

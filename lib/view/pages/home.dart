@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+
 import 'package:task_manager/controllers/task_list.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/view/components/card_task.dart';
@@ -8,10 +8,15 @@ import 'package:task_manager/view/components/card_task_top_favorite.dart';
 import 'package:task_manager/view/components/card_task_top_next.dart';
 import 'package:task_manager/view/components/task_add_button.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<TaskList>(context);
+    final provider = TaskList();
     final taskList = provider.tasks;
 
     return Scaffold(

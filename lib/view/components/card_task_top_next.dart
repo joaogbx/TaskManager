@@ -20,7 +20,7 @@ class CardTaskTopNext extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Proxima tarefa',
+                  '',
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -37,7 +37,7 @@ class CardTaskTopNext extends StatelessWidget {
             ),
             Spacer(),
             Text(
-              'Reunião com o professor',
+              '',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,
@@ -50,12 +50,12 @@ class CardTaskTopNext extends StatelessWidget {
             Row(
               children: [
                 Icon(Icons.timer_outlined),
-                Text('18:00'),
+                Text(''),
                 SizedBox(
                   width: 20,
                 ),
                 Icon(Icons.place),
-                Text('Sala 222f'),
+                Text(''),
               ],
             )
           ],

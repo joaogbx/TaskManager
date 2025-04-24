@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
+import 'package:task_manager/controllers/form_controller.dart';
 
 import 'package:task_manager/view/components/task_form.dart';
 
@@ -14,7 +16,12 @@ class TaskAddButton extends StatelessWidget {
       ),
       onPressed: () {
         showModalBottomSheet(
-            context: context, builder: (builder) => TaskForm());
+          context: context,
+          builder: (_) => ChangeNotifierProvider(
+            create: (_) => FormController(),
+            child: TaskForm(),
+          ),
+        );
       },
       child: Text(
         '+ Criar tarefa',

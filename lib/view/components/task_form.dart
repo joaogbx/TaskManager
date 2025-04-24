@@ -12,16 +12,22 @@ class TaskForm extends StatefulWidget {
 }
 
 class _TaskFormState extends State<TaskForm> {
-  int selected = 1;
+  int? selected = null;
   final dateTime = DateTime.now();
   var dataSelected = DateTime.now();
   var timeSelected = TimeOfDay.now();
 
   @override
-  Widget build(BuildContext context) {
-    final controller = Provider.of<FormController>(context);
+  void initState() {
+    super.initState();
+    final controller = Provider.of<FormController>(context, listen: false);
+  }
 
-    _showDataPicker() async {
+  @override
+  Widget build(BuildContext context) {
+    final controller = Provider.of<FormController>(context, listen: false);
+
+    _showDatePicker() async {
       DateTime? dateAtual = await showDatePicker(
         context: context,
         firstDate: dateTime,
@@ -89,7 +95,7 @@ class _TaskFormState extends State<TaskForm> {
                     '${dataSelected.day}/${dataSelected.month}/${dataSelected.year}',
                   ),
                   TextButton(
-                    onPressed: _showDataPicker,
+                    onPressed: _showDatePicker,
                     child: Text('Teste'),
                   )
                 ],
@@ -110,21 +116,43 @@ class _TaskFormState extends State<TaskForm> {
               Row(
                 children: [
                   Text('Cor:    '),
-                  ...List<Widget>.generate(3, (int index) {
+                  ...List<Widget>.generate(4, (int index) {
                     return ChoiceChip(
                       label: Text(''),
                       selected: selected == index,
                       shape: CircleBorder(),
                       color: index == 0
-                          ? MaterialStateProperty.all(Colors.blue)
+                          ? MaterialStateProperty.all(
+                              const Color.fromARGB(255, 24, 250, 126))
                           : index == 1
                               ? MaterialStateProperty.all(
-                                  const Color.fromARGB(255, 0, 0, 0))
-                              : MaterialStateProperty.all(Colors.blue),
+                                  const Color.fromARGB(255, 255, 239, 15))
+                              : index == 2
+                                  ? MaterialStateProperty.all(
+                                      const Color.fromARGB(255, 43, 128, 255))
+                                  : MaterialStateProperty.all(
+                                      const Color.fromARGB(255, 255, 30, 105)),
                       onSelected: (value) => setState(
                         () {
                           selected = index;
-                          print(index);
+                          switch (selected) {
+                            case 0:
+                              controller.color =
+                                  const Color.fromARGB(255, 24, 250, 126);
+                              break;
+                            case 1:
+                              controller.color =
+                                  const Color.fromARGB(255, 255, 239, 15);
+                              break;
+                            case 2:
+                              controller.color =
+                                  const Color.fromARGB(255, 43, 128, 255);
+                              break;
+                            default:
+                              controller.color =
+                                  const Color.fromARGB(255, 255, 30, 105);
+                              break;
+                          }
                         },
                       ),
                     );
@@ -133,7 +161,10 @@ class _TaskFormState extends State<TaskForm> {
               ),
               SizedBox(height: 10.h),
               ElevatedButton(
-                onPressed: controller.onSubmited,
+                onPressed: () async {
+                  await controller.onSubmited(context);
+                  Navigator.pop(context);
+                },
                 child: Text('enviar', style: TextStyle(fontSize: 14.sp)),
               )
             ],

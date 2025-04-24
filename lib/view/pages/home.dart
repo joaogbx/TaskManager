@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import 'package:task_manager/controllers/task_list.dart';
 import 'package:task_manager/models/task.dart';
@@ -14,11 +15,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final dateTime = DateTime.now();
+  @override
+  void initState() {
+    super.initState();
+    final provider = Provider.of<TaskList>(context, listen: false);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final provider = TaskList();
-    final taskList = provider.tasks;
-
+    final provider = Provider.of<TaskList>(context);
+    var taskList = provider.tasks;
     return Scaffold(
       drawer: Drawer(),
       appBar: AppBar(
@@ -72,7 +79,7 @@ class _HomeState extends State<Home> {
                       Padding(
                         padding: EdgeInsets.only(left: 50.w),
                         child: Text(
-                          '10',
+                          '${dateTime.day}',
                           style: TextStyle(
                             height: 1.0,
                             color: Colors.white,
@@ -83,7 +90,7 @@ class _HomeState extends State<Home> {
                       Padding(
                         padding: EdgeInsets.only(left: 35.w),
                         child: Text(
-                          '/09',
+                          '/${dateTime.month.toString().padLeft(2, '0')}',
                           style: TextStyle(
                             height: 1.0,
                             color: Colors.white,

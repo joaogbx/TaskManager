@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import 'package:task_manager/controllers/task_list.dart';
 
 class CardTaskTopFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //inal provider = TaskList();
-    //final taskFavorite = provider.tasksFavorite;
+    final provider = Provider.of<TaskList>(context);
+    final taskFavorite = provider.tasksFavorite;
 
     return Container(
       height: 110.h,
@@ -24,7 +25,7 @@ class CardTaskTopFavorite extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '',
+                  taskFavorite?.title ?? '',
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.white,
@@ -38,7 +39,7 @@ class CardTaskTopFavorite extends StatelessWidget {
             ),
             Spacer(),
             Text(
-              '',
+              taskFavorite?.description ?? '',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,
@@ -51,14 +52,18 @@ class CardTaskTopFavorite extends StatelessWidget {
             Row(
               children: [
                 Icon(Icons.timer_outlined),
-                Text(''),
+                Text(
+                  taskFavorite?.timer ?? '',
+                ),
                 SizedBox(
                   width: 20,
                 ),
                 Icon(
                   Icons.place,
                 ),
-                Text(''),
+                Text(
+                  taskFavorite?.locale ?? '',
+                ),
               ],
             )
           ],

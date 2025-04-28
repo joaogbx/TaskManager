@@ -19,14 +19,10 @@ class FormController extends ChangeNotifier {
         title: titleController.text,
         description: descriptionController.text,
         timer: '${time.hour}:${time.minute}',
+        date: date,
         locale: localeController.text,
         color: color,
       ),
     );
-    print('Título: ${titleController.text}');
-    print('Descrição: ${descriptionController.text}');
-    print('Local: ${localeController.text}');
-    print('Data: ${date.day}/${date.month}/${date.year}');
-    print('Hora: ${time.hour}:${time.minute}');
   }
 }

@@ -120,6 +120,7 @@ class _HomeState extends State<Home> {
                         title: task.title,
                         description: task.description,
                         timer: task.timer,
+                        date: task.date,
                         locale: task.locale,
                         color: task.color,
                       ),

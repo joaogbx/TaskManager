@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardTaskTopNext extends StatelessWidget {
+  const CardTaskTopNext({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -13,31 +14,30 @@ class CardTaskTopNext extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 5, right: 5, top: 5, bottom: 5),
+        padding: const EdgeInsets.all(5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Text(
-                  '',
+                  'Próxima tarefa',
                   style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500),
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-                SizedBox(
-                  width: 10.w,
-                ),
+                SizedBox(width: 10.w),
                 Icon(
                   Icons.notifications_active,
-                  color: const Color.fromARGB(255, 2, 142, 167),
-                )
+                  color: Color.fromARGB(255, 2, 142, 167),
+                ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Text(
-              '',
+              'Comprar mantimentos',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.white,
@@ -46,18 +46,24 @@ class CardTaskTopNext extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               children: [
-                Icon(Icons.timer_outlined),
-                Text(''),
-                SizedBox(
-                  width: 20,
+                Icon(Icons.timer_outlined, color: Colors.white),
+                SizedBox(width: 5),
+                Text('10:30', style: TextStyle(color: Colors.white)),
+                SizedBox(width: 20),
+                Icon(Icons.place, color: Colors.white),
+                SizedBox(width: 5),
+                Expanded(
+                  child: Text(
+                    'Supermercado ABC',
+                    style: TextStyle(color: Colors.white),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                Icon(Icons.place),
-                Text(''),
               ],
-            )
+            ),
           ],
         ),
       ),

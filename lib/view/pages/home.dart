@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
-import 'package:task_manager/controllers/task_list.dart';
+import 'package:task_manager/controllers/task_controller.dart';
 import 'package:task_manager/models/task.dart';
+
 import 'package:task_manager/view/components/card_task.dart';
 import 'package:task_manager/view/components/card_task_top_favorite.dart';
 import 'package:task_manager/view/components/card_task_top_next.dart';
 import 'package:task_manager/view/components/task_add_button.dart';
+import 'package:task_manager/view/pages/login_page.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,18 +17,23 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final dateTime = DateTime.now();
-  @override
-  void initState() {
-    super.initState();
-    final provider = Provider.of<TaskList>(context, listen: false);
-  }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<TaskList>(context);
-    var taskList = provider.tasks;
+    final provider = Provider.of<TaskController>(context);
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
+                icon: Icon(Icons.logout))
+          ],
+        ),
+      ),
       appBar: AppBar(
         toolbarHeight: 40.h,
         backgroundColor: const Color.fromARGB(255, 46, 46, 46),
@@ -79,7 +85,7 @@ class _HomeState extends State<Home> {
                       Padding(
                         padding: EdgeInsets.only(left: 50.w),
                         child: Text(
-                          '${dateTime.day}',
+                          dateTime.day.toString().padLeft(2, '0'),
                           style: TextStyle(
                             height: 1.0,
                             color: Colors.white,
@@ -112,23 +118,25 @@ class _HomeState extends State<Home> {
               SizedBox(height: 10.h),
               Expanded(
                 child: ListView.builder(
-                  itemCount: taskList.length,
+                  itemCount: provider.tasks.length,
                   itemBuilder: (context, index) {
-                    var task = taskList[index];
-                    return CardTask(
-                      Task(
-                        title: task.title,
-                        description: task.description,
-                        timer: task.timer,
-                        date: task.date,
-                        locale: task.locale,
-                        color: task.color,
+                    return CardTask(task: {
+                      provider.tasks.keys.elementAt(index): Task(
+                        title: provider.tasks.values.elementAt(index).title,
+                        description:
+                            provider.tasks.values.elementAt(index).description,
+                        locale: provider.tasks.values.elementAt(index).locale,
+                        date: provider.tasks.values.elementAt(index).date,
+                        timer: provider.tasks.values.elementAt(index).timer,
+                        color: provider.tasks.values.elementAt(index).color,
+                        isFavorite:
+                            provider.tasks.values.elementAt(index).isFavorite,
                       ),
-                    );
+                    });
                   },
                 ),
               )
-            ],
+            ], //
           ),
         ),
       ),

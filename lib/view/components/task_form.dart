@@ -223,7 +223,7 @@ class _TaskFormState extends State<TaskForm> {
                         description: descriptionController.text,
                         locale: locale.text,
                         date: date,
-                        timer: time,
+                        time: time,
                         color: color,
                         isFavorite: isFavorite,
                       ));

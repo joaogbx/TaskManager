@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CardTaskTopFavorite extends StatelessWidget {
-  const CardTaskTopFavorite({super.key});
+class CardTaskTopNext extends StatelessWidget {
+  const CardTaskTopNext({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,9 +10,9 @@ class CardTaskTopFavorite extends StatelessWidget {
       height: 110.h,
       width: 200.w,
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 45, 83),
-        borderRadius: BorderRadius.circular(10.r),
-      ),
+          color: const Color.fromARGB(255, 255, 255, 255),
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border(left: BorderSide(color: Colors.redAccent, width: 10))),
       child: Padding(
         padding: const EdgeInsets.all(5),
         child: Column(
@@ -21,23 +21,26 @@ class CardTaskTopFavorite extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Tarefa favorita',
+                  'Próxima tarefa',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+                    color: const Color.fromARGB(255, 0, 0, 0),
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 SizedBox(width: 10.w),
-                Icon(Icons.star, color: Colors.amber),
+                Icon(
+                  Icons.notifications_active,
+                  color: Color.fromARGB(255, 2, 142, 167),
+                ),
               ],
             ),
             const Spacer(),
             Text(
-              'Reunião com o time',
+              '',
               style: TextStyle(
                 fontSize: 16,
-                color: Colors.white,
+                color: const Color.fromARGB(255, 0, 0, 0),
                 fontWeight: FontWeight.w400,
               ),
               maxLines: 2,
@@ -46,16 +49,18 @@ class CardTaskTopFavorite extends StatelessWidget {
             const Spacer(),
             Row(
               children: [
-                Icon(Icons.timer_outlined, color: Colors.white),
+                Icon(Icons.timer_outlined, color: Colors.blueAccent),
                 SizedBox(width: 5),
-                Text('15:00', style: TextStyle(color: Colors.white)),
+                Text('',
+                    style:
+                        TextStyle(color: const Color.fromARGB(255, 0, 0, 0))),
                 SizedBox(width: 20),
-                Icon(Icons.place, color: Colors.white),
+                Icon(Icons.place, color: Color.fromARGB(255, 153, 94, 255)),
                 SizedBox(width: 5),
                 Expanded(
                   child: Text(
-                    'Google Meet',
-                    style: TextStyle(color: Colors.white),
+                    '',
+                    style: TextStyle(color: const Color.fromARGB(255, 0, 0, 0)),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),

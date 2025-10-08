@@ -84,7 +84,7 @@ class CardTask extends StatelessWidget {
                     SizedBox(width: 20),
                     Icon(Icons.timer_outlined, color: Colors.blueAccent),
                     Text(
-                      '${task.values.first.timer.hour.toString().padLeft(2, '0')}:${task.values.first.timer.minute.toString().padLeft(2, '0')}',
+                      '${task.values.first.time.hour.toString().padLeft(2, '0')}:${task.values.first.time.minute.toString().padLeft(2, '0')}',
                     ),
                     SizedBox(width: 20),
                     Icon(Icons.place, color: Color.fromARGB(255, 153, 94, 255)),
